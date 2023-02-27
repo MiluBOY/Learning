@@ -18,4 +18,10 @@
 > 如：my_love = "1314"  
 > **变量取名**  
 > 注意：英文命名，字母全部小写，不同单词下划线分隔（use_rage）  
-> 不要占用python函数如：print = "XXX"
+> 不要占用python函数如：print = "XXX"  
+> **数学运算**  
+> 注意："6"和6不同，前者为字符串不能进行运算，后者为整数可以进行运算  
+> 带小数点的（6.0）成为浮点数，乘号*除号/  
+> 运算优先级() > ** > */ > +-，导入math函数库：import math  
+> [math函数库](https://docs.python.org/zh-cn/3/library/math.html "math函数库")  
+> 
