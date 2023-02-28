@@ -13,3 +13,5 @@ greet = greet_english
 print(greet + "张三")
 print(greet + "李四")
 print(greet_chinese)
+##DAY3
+print('disappear' + 'community')

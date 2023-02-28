@@ -26,3 +26,5 @@
 > [math函数库](https://docs.python.org/zh-cn/3/library/math.html "math函数库")  
 > **注释**  
 > 注意：注释用#，CTRL+/快捷为多行加注释或取消注释。"""XXX"""三引号注释
+## DAY3
+>今天课太多了，没学新知识，复习前面的知识。
