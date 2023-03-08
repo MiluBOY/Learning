@@ -19,3 +19,8 @@ sorted_price = sorted(price)
 print(max_price)
 print(min_price)
 print(sorted_price)
+
+
+
+# 头好痒，要长脑子了
+print('啊啊啊啊啊啊啊啊，好难呀~~~~')
