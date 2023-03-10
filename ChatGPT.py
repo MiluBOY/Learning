@@ -1,16 +1,52 @@
-def sieve_of_eratosthenes(n):
-    """
-    获取小于等于n的所有质数
-    """
-    is_prime = [True] * (n+1)
-    is_prime[0] = False
-    is_prime[1] = False
-    for i in range(2, int(n**0.5)+1):
-        if is_prime[i]:
-            for j in range(i*i, n+1, i):
-                is_prime[j] = False
-    primes = [i for i in range(2, n+1) if is_prime[i]]
-    return primes
+def init_board(board_size):
+    # 初始化棋盘
+    board = []
+    for i in range(board_size):
+        row = [0] * board_size
+        board.append(row)
+    return board
 
-primes = sieve_of_eratosthenes(9999)
-print(primes)
+def print_board(board):
+    # 打印棋盘
+    board_size = len(board)
+    for i in range(board_size):
+        print(board[i])
+
+def check_win(board, player):
+    # 检查是否有五子连珠
+    board_size = len(board)
+    for i in range(board_size):
+        for j in range(board_size):
+            if j + 4 < board_size and board[i][j]==player and board[i][j+1]==player and board[i][j+2]==player and board[i][j+3]==player and board[i][j+4]==player:
+                return True
+            elif i + 4 < board_size and board[i][j]==player and board[i+1][j]==player and board[i+2][j]==player and board[i+3][j]==player and board[i+4][j]==player:
+                return True
+            elif i + 4 < board_size and j + 4 < board_size and board[i][j]==player and board[i+1][j+1]==player and board[i+2][j+2]==player and board[i+3][j+3]==player and board[i+4][j+4]==player:
+                return True
+            elif i >=4 and j + 4 < board_size and board[i][j]==player and board[i-1][j+1]==player and board[i-2][j+2]==player and board[i-3][j+3]==player and board[i-4][j+4]==player:
+                return True
+    return False
+
+def play():
+    # 开始游戏
+    board_size = 15
+    board = init_board(board_size)
+    player = 1
+    while True:
+        print_board(board)
+        print("当前玩家：{}".format(player))
+        x = int(input("请输入行号："))
+        y = int(input("请输入列号："))
+        if board[x][y] != 0:
+            print("该坐标已经有棋子，请重新输入！")
+            continue
+        board[x][y] = player
+        if check_win(board, player):
+            print_board(board)
+            print("玩家{}获胜！".format(player))
+            break
+        player = 2 if player == 1 else 1
+        print("----------------------------")
+
+if __name__ == '__main__':
+    play()
