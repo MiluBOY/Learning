@@ -1,24 +1,21 @@
 import random
 
-print("欢迎来到猜拳游戏！")
-print("请出拳：1 - 石头，2 - 剪刀，3 - 布")
+print("欢迎来到猜数字游戏！")
+print("请输入一个1到100之间的整数：")
 
-# 玩家出拳
-player_choice = int(input())
+# 随机生成一个1到100之间的整数
+answer = random.randint(1, 100)
 
-# 电脑出拳
-computer_choice = random.randint(1, 3)
+# 循环猜数字
+while True:
+    # 玩家输入猜测的数字
+    guess = int(input())
 
-# 判断胜负
-if player_choice == computer_choice:
-    print("平局！")
-elif player_choice == 1 and computer_choice == 2:
-    print("你赢了！")
-elif player_choice == 2 and computer_choice == 3:
-    print("你赢了！")
-elif player_choice == 3 and computer_choice == 1:
-    print("你赢了！")
-else:
-    print("你输了！")
-
-print("电脑出的是：", computer_choice)
+    # 判断猜测的数字与答案的大小关系
+    if guess > answer:
+        print("猜大了，再试试吧！")
+    elif guess < answer:
+        print("猜小了，再试试吧！")
+    else:
+        print("恭喜你，猜对了！")
+        break
