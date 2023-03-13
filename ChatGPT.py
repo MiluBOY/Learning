@@ -1,21 +1,33 @@
-import random
-
-print("欢迎来到猜数字游戏！")
-print("请输入一个1到100之间的整数：")
-
-# 随机生成一个1到100之间的整数
-answer = random.randint(1, 100)
-
-# 循环猜数字
 while True:
-    # 玩家输入猜测的数字
-    guess = int(input())
+    # 用户输入
+    expression = input('请输入要计算的表达式（例如：1+2）：')
 
-    # 判断猜测的数字与答案的大小关系
-    if guess > answer:
-        print("猜大了，再试试吧！")
-    elif guess < answer:
-        print("猜小了，再试试吧！")
-    else:
-        print("恭喜你，猜对了！")
-        break
+    # 分割表达式
+    operator_list = ['+', '-', '*', '/']
+    operator = None
+    for op in operator_list:
+        if op in expression:
+            operator = op
+            break
+    if not operator:
+        print('输入错误，请重新输入！')
+        continue
+    num1, num2 = expression.split(operator)
+    num1 = float(num1.strip())
+    num2 = float(num2.strip())
+
+    # 计算结果
+    if operator == '+':
+        result = num1 + num2
+    elif operator == '-':
+        result = num1 - num2
+    elif operator == '*':
+        result = num1 * num2
+    elif operator == '/':
+        if num2 == 0:
+            print('除数不能为0，请重新输入！')
+            continue
+        result = num1 / num2
+
+    # 输出结果
+    print('结果为：{}'.format(result))
