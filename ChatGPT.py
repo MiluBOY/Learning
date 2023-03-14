@@ -1,33 +1,26 @@
-while True:
-    # 用户输入
-    expression = input('请输入要计算的表达式（例如：1+2）：')
+import tkinter as tk
 
-    # 分割表达式
-    operator_list = ['+', '-', '*', '/']
-    operator = None
-    for op in operator_list:
-        if op in expression:
-            operator = op
-            break
-    if not operator:
-        print('输入错误，请重新输入！')
-        continue
-    num1, num2 = expression.split(operator)
-    num1 = float(num1.strip())
-    num2 = float(num2.strip())
+# 创建窗口
+window = tk.Tk()
+window.title('交互面板')
 
-    # 计算结果
-    if operator == '+':
-        result = num1 + num2
-    elif operator == '-':
-        result = num1 - num2
-    elif operator == '*':
-        result = num1 * num2
-    elif operator == '/':
-        if num2 == 0:
-            print('除数不能为0，请重新输入！')
-            continue
-        result = num1 / num2
+# 添加标签
+label = tk.Label(window, text='请输入一个数值')
+label.pack()
 
-    # 输出结果
-    print('结果为：{}'.format(result))
+# 添加输入框
+entry = tk.Entry(window)
+entry.pack()
+
+# 定义计算函数
+def calculate():
+    value = float(entry.get())
+    result = value ** 2
+    label.config(text='结果：{}'.format(result))
+
+# 添加按钮
+button = tk.Button(window, text='计算', command=calculate)
+button.pack()
+
+# 运行程序
+window.mainloop()
