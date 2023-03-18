@@ -89,3 +89,68 @@ class Food:
         # 随机位置
         self.x = random.randrange(0, SCREEN_WIDTH // CELL_SIZE) * CELL_SIZE
         self.y = random.randrange(0, SCREEN_HEIGHT // CELL_SIZE) * CELL_SIZE
+        # 颜色
+        self.color = RED
+
+    # 绘制食物
+    def draw(self):
+        pygame.draw.rect(screen, self.color, [self.x, self.y, CELL_SIZE, CELL_SIZE])
+
+# 创建贪吃蛇和食物对象
+snake = Snake()
+food = Food()
+
+# 设置游戏循环标志
+done = False
+
+# 创建时钟对象
+clock = pygame.time.Clock()
+
+# 游戏循环
+while not done:
+    # 处理事件
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                done = True
+            elif event.key == pygame.K_LEFT:
+                snake.change_direction("left")
+            elif event.key == pygame.K_RIGHT:
+                snake.change_direction("right")
+            elif event.key == pygame.K_UP:
+                snake.change_direction("up")
+            elif event.key == pygame.K_DOWN:
+                snake.change_direction("down")
+
+    # 更新贪吃蛇
+    snake.update()
+
+    # 判断是否吃到食物
+    if snake.eat_food(food):
+        food = Food()
+
+    # 判断是否碰到边界或身体
+    if snake.check_collision():
+        done = True
+
+    # 绘制背景和网格线
+    screen.fill(BLACK)
+    for x in range(0, SCREEN_WIDTH, CELL_SIZE):
+        pygame.draw.line(screen, WHITE, [x, 0], [x, SCREEN_HEIGHT])
+    for y in range(0, SCREEN_HEIGHT, CELL_SIZE):
+        pygame.draw.line(screen, WHITE, [0, y], [SCREEN_WIDTH, y])
+
+    # 绘制贪吃蛇和食物
+    snake.draw()
+    food.draw()
+
+    # 更新屏幕
+    pygame.display.flip()
+
+    # 设置帧率
+    clock.tick(10)
+
+# 退出 pygame
+pygame.quit()
